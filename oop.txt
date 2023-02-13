@@ -1,0 +1,226 @@
+| Constructor | auto called when object is created  |
+| --- | --- |
+| Access Specifier | private, public, protected |
+| Encapsulation | make sure that “sensitive” data hidden from users. must declare as ‘private’.  If you want others read or modify the value, you can provide “set” and “get” methods |
+| Inheritance | inherit methods from one class to another: 2types→ derived class, base class                                             Multilevel Inheritance →                                                       Multiple Inheritance →  |
+| Polymorphism | means “Many forms”                                         Inheritance - Lets us inherit attributes and methods from another class. Polymorphism
+uses those methods to perform different tasks. This allows us to perform a single action in different ways.  |
+
+Constructor → 
+
+```cpp
+Class MyClass {
+
+	public: 
+
+	string brand //← attribute
+
+	 MyClass(string x) { //← constructor
+
+		brand = x; 
+
+	}
+
+}
+```
+
+```cpp
+// Access Specifiers
+class MyClass {
+  public:    // Public access specifier
+    int x;   // Public attribute
+  private:   // Private access specifier
+    int y;   // Private attribute
+};
+
+int main() {
+  MyClass myObj;
+  myObj.x = 25;  // Allowed (public)
+  myObj.y = 50;  // Not allowed (private)
+  return 0;
+}
+```
+
+Encapsulation →
+
+```cpp
+class Employee {
+  private:
+    // Private attribute
+    int salary;
+
+  public:
+    // Setter
+    void setSalary(int s) {
+      salary = s;
+    }
+    // Getter
+    int getSalary() {
+      return salary;
+    }
+};
+
+int main() {
+  Employee myObj;
+  myObj.setSalary(50000);
+  cout << myObj.getSalary();
+  return 0;
+}
+```
+
+Inheritance →
+
+```cpp
+// Base class
+class Vehicle {
+  public:
+    string brand = "Ford";
+    void honk() {
+      cout << "Tuut, tuut! \n" ;
+    }
+};
+
+// Derived class
+class Car: public Vehicle {
+  public:
+    string model = "Mustang";
+};
+
+int main() {
+  Car myCar;
+  myCar.honk();
+  cout << myCar.brand + " " + myCar.model;
+  return 0;
+}
+```
+
+Multilevel Inheritance → 
+
+```cpp
+// Base class (parent)
+class MyClass {
+  public:
+    void myFunction() {
+      cout << "Some content in parent class." ;
+    }
+};
+
+// Derived class (child)
+class MyChild: public MyClass {
+};
+
+// Derived class (grandchild)
+class MyGrandChild: public MyChild {
+};
+
+int main() {
+  MyGrandChild myObj;
+  myObj.myFunction();
+  return 0;
+}
+```
+
+Multiple Inheritance →
+
+```cpp
+// Base class
+class MyClass {
+  public:
+    void myFunction() {
+      cout << "Some content in parent class." ;
+    }
+};
+
+// Another base class
+class MyOtherClass {
+  public:
+    void myOtherFunction() {
+      cout << "Some content in another class." ;
+    }
+};
+
+// Derived class
+class MyChildClass: public MyClass, public MyOtherClass {
+};
+
+int main() {
+  MyChildClass myObj;
+  myObj.myFunction();
+  myObj.myOtherFunction();
+  return 0;
+}
+```
+
+**Access Specifiers → ‘Protected’**
+
+```cpp
+class Employee {
+  protected: // Protected access specifier
+    int salary;
+};
+
+// Derived class
+class Programmer: public Employee {
+  public:
+    int bonus;
+    void setSalary(int s) {
+      salary = s;
+    }
+    int getSalary() {
+      return salary;
+    }
+};
+
+int main() {
+  Programmer myObj;
+  myObj.setSalary(50000);
+  myObj.bonus = 15000;
+  cout << "Salary: " << myObj.getSalary() << "\n";
+  cout << "Bonus: " << myObj.bonus << "\n";
+  return 0;
+}
+```
+
+Polymorphism →
+
+```cpp
+class Animal {
+  public:
+    void animalSound() {
+      cout << "The animal makes a sound \n";
+    }
+};
+
+// Derived class
+class Pig : public Animal {
+  public:
+    void animalSound() {
+      cout << "The pig says: wee wee \n";
+    }
+};
+
+// Derived class
+class Dog : public Animal {
+  public:
+    void animalSound() {
+      cout << "The dog says: bow wow \n";
+    }
+};
+
+int main() {
+  Animal myAnimal;
+  Pig myPig;
+  Dog myDog;
+
+  myAnimal.animalSound();
+  myPig.animalSound();
+  myDog.animalSound();
+  return 0;
+}
+
+/*printed -- > 
+The animal makes a sound
+The pig says: wee wee
+The dog says: bow wow
+*/
+```
